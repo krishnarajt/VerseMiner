@@ -1,0 +1,10 @@
+resources:
+  - ../../base
+
+configMapGenerator:
+  - name: app-config
+    files:
+      - config.yml
+
+generatorOptions:
+  disableNameSuffixHash: false

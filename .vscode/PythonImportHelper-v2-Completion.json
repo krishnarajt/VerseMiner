@@ -1,0 +1,407 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "DateTime",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.ext.declarative",
+        "description": "sqlalchemy.ext.declarative",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.declarative",
+        "documentation": {}
+    },
+    {
+        "label": "func",
+        "importPath": "sqlalchemy.sql",
+        "description": "sqlalchemy.sql",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.sql",
+        "documentation": {}
+    },
+    {
+        "label": "whisper",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "whisper",
+        "description": "whisper",
+        "detail": "whisper",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "WHISPER_MODEL",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "AUDIO_EXTENSIONS",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "MUSIC_ROOT_PATH",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "GEMINI_API_KEY",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_HOST",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PORT",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_NAME",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_USER",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PASSWORD",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "MUSIC_ROOT_PATH",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "SQLUtils",
+        "importPath": "sql_utils",
+        "description": "sql_utils",
+        "isExtraImport": true,
+        "detail": "sql_utils",
+        "documentation": {}
+    },
+    {
+        "label": "LLMUtils",
+        "importPath": "llm_utils",
+        "description": "llm_utils",
+        "isExtraImport": true,
+        "detail": "llm_utils",
+        "documentation": {}
+    },
+    {
+        "label": "google.generativeai",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "google.generativeai",
+        "description": "google.generativeai",
+        "detail": "google.generativeai",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "importPath": "sql_connector",
+        "description": "sql_connector",
+        "isExtraImport": true,
+        "detail": "sql_connector",
+        "documentation": {}
+    },
+    {
+        "label": "LyricsGenerator",
+        "importPath": "lyrics_generator",
+        "description": "lyrics_generator",
+        "isExtraImport": true,
+        "detail": "lyrics_generator",
+        "documentation": {}
+    },
+    {
+        "label": "DB_HOST",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "DB_HOST = os.getenv(\"DB_HOST\", \"localhost\")\nDB_PORT = os.getenv(\"DB_PORT\", \"5432\")\nDB_NAME = os.getenv(\"DB_NAME\", \"lyrics_db\")\nDB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PORT",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "DB_PORT = os.getenv(\"DB_PORT\", \"5432\")\nDB_NAME = os.getenv(\"DB_NAME\", \"lyrics_db\")\nDB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_NAME",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "DB_NAME = os.getenv(\"DB_NAME\", \"lyrics_db\")\nDB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_USER",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "DB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PASSWORD",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "DB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "GEMINI_API_KEY",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "GEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "MUSIC_ROOT_PATH",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "MUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "WHISPER_MODEL",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "WHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "AUDIO_EXTENSIONS",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "AUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "TranscribedFile",
+        "kind": 6,
+        "importPath": "core.common_constants.models",
+        "description": "core.common_constants.models",
+        "peekOfCode": "class TranscribedFile(Base):\n    __tablename__ = \"transcribed_files\"\n    file_id = Column(Integer, primary_key=True, autoincrement=True)\n    file_location = Column(String, nullable=False, unique=True)\n    date_transcribed = Column(DateTime(timezone=True))\n    date_added = Column(DateTime(timezone=True))\n    created_date = Column(DateTime(timezone=True), server_default=func.now())\n    last_modified_date = Column(\n        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()\n    )",
+        "detail": "core.common_constants.models",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 5,
+        "importPath": "core.common_constants.models",
+        "description": "core.common_constants.models",
+        "peekOfCode": "Base = declarative_base()\nclass TranscribedFile(Base):\n    __tablename__ = \"transcribed_files\"\n    file_id = Column(Integer, primary_key=True, autoincrement=True)\n    file_location = Column(String, nullable=False, unique=True)\n    date_transcribed = Column(DateTime(timezone=True))\n    date_added = Column(DateTime(timezone=True))\n    created_date = Column(DateTime(timezone=True), server_default=func.now())\n    last_modified_date = Column(\n        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()",
+        "detail": "core.common_constants.models",
+        "documentation": {}
+    },
+    {
+        "label": "LyricsGenerator",
+        "kind": 6,
+        "importPath": "core.src.LyricsGenerator",
+        "description": "core.src.LyricsGenerator",
+        "peekOfCode": "class LyricsGenerator:\n    def __init__(self):\n        \"\"\"Initialize Whisper model and LLM utilities.\"\"\"\n        print(f\"Loading Whisper model: {WHISPER_MODEL}\")\n        self.model = whisper.load_model(WHISPER_MODEL)\n        self.llm = LLMUtils()\n        self.sql_utils = SQLUtils()\n        print(\"Whisper model loaded successfully\")\n    def get_all_audio_files(self, root_directory):\n        \"\"\"",
+        "detail": "core.src.LyricsGenerator",
+        "documentation": {}
+    },
+    {
+        "label": "LLMUtils",
+        "kind": 6,
+        "importPath": "core.utils.llm_utils",
+        "description": "core.utils.llm_utils",
+        "peekOfCode": "class LLMUtils:\n    def __init__(self):\n        \"\"\"Initialize the Gemini API client.\"\"\"\n        genai.configure(api_key=GEMINI_API_KEY)\n        self.model = genai.GenerativeModel(\"gemini-pro\")\n    def improve_lyrics(self, raw_transcription, file_name):\n        \"\"\"\n        Use Gemini to improve and format the raw transcription.\n        Args:\n            raw_transcription: Raw text from Whisper",
+        "detail": "core.utils.llm_utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_engine",
+        "kind": 2,
+        "importPath": "core.utils.sql_connector",
+        "description": "core.utils.sql_connector",
+        "peekOfCode": "def get_engine():\n    \"\"\"Create and return a SQLAlchemy engine.\"\"\"\n    connection_string = (\n        f\"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}\"\n    )\n    engine = create_engine(connection_string, pool_pre_ping=True)\n    return engine\ndef get_session():\n    \"\"\"Create and return a SQLAlchemy session.\"\"\"\n    engine = get_engine()",
+        "detail": "core.utils.sql_connector",
+        "documentation": {}
+    },
+    {
+        "label": "get_session",
+        "kind": 2,
+        "importPath": "core.utils.sql_connector",
+        "description": "core.utils.sql_connector",
+        "peekOfCode": "def get_session():\n    \"\"\"Create and return a SQLAlchemy session.\"\"\"\n    engine = get_engine()\n    Session = sessionmaker(bind=engine)\n    return Session()\ndef init_db():\n    \"\"\"Initialize the database by creating all tables.\"\"\"\n    engine = get_engine()\n    Base.metadata.create_all(engine)",
+        "detail": "core.utils.sql_connector",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "kind": 2,
+        "importPath": "core.utils.sql_connector",
+        "description": "core.utils.sql_connector",
+        "peekOfCode": "def init_db():\n    \"\"\"Initialize the database by creating all tables.\"\"\"\n    engine = get_engine()\n    Base.metadata.create_all(engine)",
+        "detail": "core.utils.sql_connector",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    \"\"\"Main entry point for the LRC generator.\"\"\"\n    parser = argparse.ArgumentParser(\n        description=\"Generate LRC files for audio files using Whisper\"\n    )\n    parser.add_argument(\n        \"directory\",\n        nargs=\"?\",\n        default=MUSIC_ROOT_PATH,\n        help=f\"Root directory containing audio files (default: {MUSIC_ROOT_PATH})\",",
+        "detail": "main",
+        "documentation": {}
+    }
+]

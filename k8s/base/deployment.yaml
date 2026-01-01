@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: verseminer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: verseminer
+  template:
+    metadata:
+      labels:
+        app: verseminer
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/krishnarajt/verseminer:git-e4cf7bb89f76984fcaad02cde099a6a874a1453b
+          imagePullPolicy: IfNotPresent
+          command: ["python", "main.py"]
+
+          envFrom:
+            - secretRef:
+                name: verseminer-env
+
+          volumeMounts:
+            - name: app-config
+              mountPath: /app/config.yml
+              subPath: config.yml
+
+            - name: playlists-config
+              mountPath: /app/playlists.txt
+              subPath: playlists.txt
+            
+            - name: music
+              mountPath: /music
+
+      volumes:
+        - name: app-config
+          configMap:
+            name: app-config
+
+        - name: playlists-config
+          configMap:
+            name: playlists-config
+
+        - name: music
+          hostPath:
+            path: /music
+            type: Directory

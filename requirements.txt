@@ -1,0 +1,6 @@
+openai-whisper
+torch
+sqlalchemy
+psycopg2-binary
+google-generativeai
+python-dotenv
