@@ -23,22 +23,23 @@ services:
       postgres:
         condition: service_healthy
     environment:
+      # Database config
+      - DB_TYPE=postgres
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_NAME=lyrics_db
       - DB_USER=postgres
       - DB_PASSWORD=postgres
+      # Whisper config (faster-whisper for CPU)
+      - WHISPER_ENGINE=faster
+      - FASTER_WHISPER_MODEL=small
+      - FASTER_WHISPER_COMPUTE_TYPE=int8
+      - WHISPER_DEVICE=cpu
+      # Gemini API
       - GEMINI_API_KEY=${GEMINI_API_KEY}
       - MUSIC_ROOT_PATH=/music
     volumes:
       - ./music:/music  # Mount your music directory here
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
 
 volumes:
   postgres_data:

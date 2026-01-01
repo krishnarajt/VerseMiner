@@ -1,4 +1,5 @@
 openai-whisper
+faster-whisper
 torch
 sqlalchemy
 psycopg2-binary

@@ -24,7 +24,17 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 MUSIC_ROOT_PATH = os.getenv("MUSIC_ROOT_PATH", "/music")
 
 # Whisper model configuration
-WHISPER_MODEL = "large-v3"  # Most accurate model
+WHISPER_ENGINE = os.getenv("WHISPER_ENGINE", "openai")  # Options: "openai" or "faster"
+WHISPER_MODEL = os.getenv("WHISPER_MODEL", "large-v3")  # For openai-whisper
+WHISPER_DEVICE = os.getenv("WHISPER_DEVICE", "cuda")  # Options: "cuda" or "cpu"
+
+# Faster-whisper specific settings (used if WHISPER_ENGINE=faster)
+FASTER_WHISPER_MODEL = os.getenv(
+    "FASTER_WHISPER_MODEL", "small"
+)  # small, medium, large-v2, large-v3
+FASTER_WHISPER_COMPUTE_TYPE = os.getenv(
+    "FASTER_WHISPER_COMPUTE_TYPE", "int8"
+)  # int8, float16, float32
 
 # Supported audio formats
 AUDIO_EXTENSIONS = {".mp3", ".wav", ".flac", ".m4a", ".ogg", ".opus", ".wma", ".aac"}

@@ -1,20 +1,54 @@
 import os
-import whisper
+import subprocess
 from pathlib import Path
 from datetime import datetime
-from common_constants.constants import WHISPER_MODEL, AUDIO_EXTENSIONS, MUSIC_ROOT_PATH
+from typing import Optional
+from constants import (
+    WHISPER_ENGINE,
+    WHISPER_MODEL,
+    WHISPER_DEVICE,
+    FASTER_WHISPER_MODEL,
+    FASTER_WHISPER_COMPUTE_TYPE,
+    AUDIO_EXTENSIONS,
+    MUSIC_ROOT_PATH,
+)
 from sql_utils import SQLUtils
 from llm_utils import LLMUtils
+from src.logging_utils import get_logger
+
+logger = get_logger(__name__)
 
 
 class LyricsGenerator:
     def __init__(self):
-        """Initialize Whisper model and LLM utilities."""
-        print(f"Loading Whisper model: {WHISPER_MODEL}")
-        self.model = whisper.load_model(WHISPER_MODEL)
+        """Initialize Whisper model (either openai-whisper or faster-whisper) and LLM utilities."""
+        self.engine_type = WHISPER_ENGINE.lower()
+
+        if self.engine_type == "faster":
+            logger.info(
+                f"Loading Faster-Whisper model: {FASTER_WHISPER_MODEL} (compute_type: {FASTER_WHISPER_COMPUTE_TYPE})"
+            )
+            from faster_whisper import WhisperModel
+
+            self.model = WhisperModel(
+                FASTER_WHISPER_MODEL,
+                device="cpu" if WHISPER_DEVICE.lower() == "cpu" else "cuda",
+                compute_type=FASTER_WHISPER_COMPUTE_TYPE,
+            )
+            logger.info("Faster-Whisper model loaded successfully")
+        elif self.engine_type == "openai":
+            logger.info(f"Loading OpenAI Whisper model: {WHISPER_MODEL}")
+            import whisper
+
+            self.model = whisper.load_model(WHISPER_MODEL, device=WHISPER_DEVICE)
+            logger.info("OpenAI Whisper model loaded successfully")
+        else:
+            raise ValueError(
+                f"Unsupported WHISPER_ENGINE: {WHISPER_ENGINE}. Use 'openai' or 'faster'"
+            )
+
         self.llm = LLMUtils()
         self.sql_utils = SQLUtils()
-        print("Whisper model loaded successfully")
 
     def get_all_audio_files(self, root_directory):
         """
@@ -42,9 +76,32 @@ class LyricsGenerator:
             # If path is not relative to MUSIC_ROOT_PATH, return as-is
             return str(absolute_path)
 
+    def _to_wav(self, audio_path: Path) -> Path:
+        """Convert audio to mono 16k WAV for Whisper."""
+        wav_path = audio_path.with_suffix(".wav")
+        logger.debug(f"Converting {audio_path.name} to WAV format")
+
+        subprocess.run(
+            [
+                "ffmpeg",
+                "-y",
+                "-i",
+                str(audio_path),
+                "-ar",
+                "16000",
+                "-ac",
+                "1",
+                str(wav_path),
+            ],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=True,
+        )
+        return wav_path
+
     def transcribe_audio(self, audio_file_path):
         """
-        Transcribe audio file using Whisper.
+        Transcribe audio file using either OpenAI Whisper or Faster-Whisper.
 
         Args:
             audio_file_path: Path to the audio file
@@ -52,11 +109,59 @@ class LyricsGenerator:
         Returns:
             Transcription result with timestamps
         """
-        print(f"Transcribing: {audio_file_path}")
-        result = self.model.transcribe(
-            str(audio_file_path), task="transcribe", word_timestamps=True, verbose=False
-        )
-        return result
+        logger.info(f"Transcribing: {audio_file_path}")
+
+        if self.engine_type == "faster":
+            # Faster-whisper requires WAV conversion
+            wav_path = self._to_wav(Path(audio_file_path))
+            try:
+                segments, info = self.model.transcribe(
+                    str(wav_path),
+                    task="transcribe",
+                    language=None,  # auto-detect
+                )
+
+                # Override Urdu with Hindi if needed
+                if info.language == "ur":
+                    logger.debug("Detected Urdu language, overriding with Hindi")
+                    segments, info = self.model.transcribe(
+                        str(wav_path),
+                        task="transcribe",
+                        language="hi",
+                    )
+
+                # Convert faster-whisper segments to openai-whisper format
+                result = {
+                    "text": " ".join([seg.text for seg in segments]),
+                    "segments": [],
+                }
+
+                # Re-run to get segments list (faster-whisper returns generator)
+                segments, _ = self.model.transcribe(
+                    str(wav_path),
+                    task="transcribe",
+                    language=info.language if info.language != "ur" else "hi",
+                )
+
+                for seg in segments:
+                    result["segments"].append(
+                        {"start": seg.start, "end": seg.end, "text": seg.text}
+                    )
+
+                return result
+            finally:
+                if wav_path.exists():
+                    wav_path.unlink()
+                    logger.debug(f"Cleaned up temporary WAV file: {wav_path.name}")
+        else:
+            # OpenAI Whisper
+            result = self.model.transcribe(
+                str(audio_file_path),
+                task="transcribe",
+                word_timestamps=True,
+                verbose=False,
+            )
+            return result
 
     def format_lrc_timestamp(self, seconds):
         """
@@ -110,7 +215,7 @@ class LyricsGenerator:
         lrc_file_path = Path(audio_file_path).with_suffix(".lrc")
         with open(lrc_file_path, "w", encoding="utf-8") as f:
             f.write(lrc_content)
-        print(f"LRC file saved: {lrc_file_path}")
+        logger.info(f"LRC file saved: {lrc_file_path}")
 
     def process_directory(self, root_directory):
         """
@@ -122,7 +227,7 @@ class LyricsGenerator:
         audio_files = self.get_all_audio_files(root_directory)
         total_files = len(audio_files)
 
-        print(f"\nFound {total_files} audio files to process\n")
+        logger.info(f"\nFound {total_files} audio files to process\n")
 
         for idx, audio_file in enumerate(audio_files, 1):
             try:
@@ -130,12 +235,12 @@ class LyricsGenerator:
 
                 # Check if already processed
                 if self.sql_utils.file_exists(relative_path):
-                    print(
+                    logger.info(
                         f"[{idx}/{total_files}] Skipping (already processed): {audio_file.name}"
                     )
                     continue
 
-                print(f"\n[{idx}/{total_files}] Processing: {audio_file.name}")
+                logger.info(f"\n[{idx}/{total_files}] Processing: {audio_file.name}")
 
                 # Transcribe audio
                 result = self.transcribe_audio(audio_file)
@@ -144,7 +249,7 @@ class LyricsGenerator:
                 raw_text = result["text"]
 
                 # Improve lyrics with LLM
-                print("Improving lyrics with Gemini...")
+                logger.info("Improving lyrics with Gemini...")
                 improved_text = self.llm.improve_lyrics(raw_text, audio_file.name)
 
                 # Create LRC content
@@ -165,10 +270,10 @@ class LyricsGenerator:
                     date_added=datetime.now(),
                 )
 
-                print(f"Successfully processed: {audio_file.name}")
+                logger.info(f"Successfully processed: {audio_file.name}")
 
             except Exception as e:
-                print(f"Error processing {audio_file}: {e}")
+                logger.error(f"Error processing {audio_file}: {e}", exc_info=True)
                 continue
 
-        print(f"\n\nProcessing complete! Processed {total_files} files.")
+        logger.info(f"\n\nProcessing complete! Processed {total_files} files.")

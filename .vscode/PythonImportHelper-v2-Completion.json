@@ -73,12 +73,12 @@
         "documentation": {}
     },
     {
-        "label": "whisper",
+        "label": "subprocess",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "whisper",
-        "description": "whisper",
-        "detail": "whisper",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
         "documentation": {}
     },
     {
@@ -111,79 +111,70 @@
         "description": "datetime",
         "isExtraImport": true,
         "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "WHISPER_ENGINE",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
         "documentation": {}
     },
     {
         "label": "WHISPER_MODEL",
-        "importPath": "common_constants.constants",
-        "description": "common_constants.constants",
+        "importPath": "constants",
+        "description": "constants",
         "isExtraImport": true,
-        "detail": "common_constants.constants",
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "WHISPER_DEVICE",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "FASTER_WHISPER_MODEL",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "FASTER_WHISPER_COMPUTE_TYPE",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
         "documentation": {}
     },
     {
         "label": "AUDIO_EXTENSIONS",
-        "importPath": "common_constants.constants",
-        "description": "common_constants.constants",
+        "importPath": "constants",
+        "description": "constants",
         "isExtraImport": true,
-        "detail": "common_constants.constants",
+        "detail": "constants",
         "documentation": {}
     },
     {
         "label": "MUSIC_ROOT_PATH",
-        "importPath": "common_constants.constants",
-        "description": "common_constants.constants",
+        "importPath": "constants",
+        "description": "constants",
         "isExtraImport": true,
-        "detail": "common_constants.constants",
-        "documentation": {}
-    },
-    {
-        "label": "GEMINI_API_KEY",
-        "importPath": "common_constants.constants",
-        "description": "common_constants.constants",
-        "isExtraImport": true,
-        "detail": "common_constants.constants",
-        "documentation": {}
-    },
-    {
-        "label": "MUSIC_ROOT_PATH",
-        "importPath": "common_constants.constants",
-        "description": "common_constants.constants",
-        "isExtraImport": true,
-        "detail": "common_constants.constants",
-        "documentation": {}
-    },
-    {
-        "label": "SQLUtils",
-        "importPath": "sql_utils",
-        "description": "sql_utils",
-        "isExtraImport": true,
-        "detail": "sql_utils",
-        "documentation": {}
-    },
-    {
-        "label": "LLMUtils",
-        "importPath": "llm_utils",
-        "description": "llm_utils",
-        "isExtraImport": true,
-        "detail": "llm_utils",
-        "documentation": {}
-    },
-    {
-        "label": "google.generativeai",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "google.generativeai",
-        "description": "google.generativeai",
-        "detail": "google.generativeai",
-        "documentation": {}
-    },
-    {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "detail": "constants",
         "documentation": {}
     },
     {
@@ -240,6 +231,63 @@
         "description": "constants",
         "isExtraImport": true,
         "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "SQLUtils",
+        "importPath": "sql_utils",
+        "description": "sql_utils",
+        "isExtraImport": true,
+        "detail": "sql_utils",
+        "documentation": {}
+    },
+    {
+        "label": "LLMUtils",
+        "importPath": "llm_utils",
+        "description": "llm_utils",
+        "isExtraImport": true,
+        "detail": "llm_utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "src.logging_utils",
+        "description": "src.logging_utils",
+        "isExtraImport": true,
+        "detail": "src.logging_utils",
+        "documentation": {}
+    },
+    {
+        "label": "google.generativeai",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "google.generativeai",
+        "description": "google.generativeai",
+        "detail": "google.generativeai",
+        "documentation": {}
+    },
+    {
+        "label": "GEMINI_API_KEY",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "MUSIC_ROOT_PATH",
+        "importPath": "common_constants.constants",
+        "description": "common_constants.constants",
+        "isExtraImport": true,
+        "detail": "common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
         "documentation": {}
     },
     {
@@ -349,7 +397,7 @@
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "DB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# SQLite configuration (used if DB_TYPE=sqlite)\nDB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model",
+        "peekOfCode": "DB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# SQLite configuration (used if DB_TYPE=sqlite)\nDB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_ENGINE = os.getenv(\"WHISPER_ENGINE\", \"openai\")  # Options: \"openai\" or \"faster\"",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -358,7 +406,7 @@
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "DB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "peekOfCode": "DB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_ENGINE = os.getenv(\"WHISPER_ENGINE\", \"openai\")  # Options: \"openai\" or \"faster\"\nWHISPER_MODEL = os.getenv(\"WHISPER_MODEL\", \"large-v3\")  # For openai-whisper\nWHISPER_DEVICE = os.getenv(\"WHISPER_DEVICE\", \"cuda\")  # Options: \"cuda\" or \"cpu\"",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -367,7 +415,7 @@
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "DB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "peekOfCode": "DB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_ENGINE = os.getenv(\"WHISPER_ENGINE\", \"openai\")  # Options: \"openai\" or \"faster\"\nWHISPER_MODEL = os.getenv(\"WHISPER_MODEL\", \"large-v3\")  # For openai-whisper\nWHISPER_DEVICE = os.getenv(\"WHISPER_DEVICE\", \"cuda\")  # Options: \"cuda\" or \"cpu\"\n# Faster-whisper specific settings (used if WHISPER_ENGINE=faster)",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -376,7 +424,7 @@
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "GEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "peekOfCode": "GEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_ENGINE = os.getenv(\"WHISPER_ENGINE\", \"openai\")  # Options: \"openai\" or \"faster\"\nWHISPER_MODEL = os.getenv(\"WHISPER_MODEL\", \"large-v3\")  # For openai-whisper\nWHISPER_DEVICE = os.getenv(\"WHISPER_DEVICE\", \"cuda\")  # Options: \"cuda\" or \"cpu\"\n# Faster-whisper specific settings (used if WHISPER_ENGINE=faster)\nFASTER_WHISPER_MODEL = os.getenv(\n    \"FASTER_WHISPER_MODEL\", \"small\"",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -385,7 +433,16 @@
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "MUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "peekOfCode": "MUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_ENGINE = os.getenv(\"WHISPER_ENGINE\", \"openai\")  # Options: \"openai\" or \"faster\"\nWHISPER_MODEL = os.getenv(\"WHISPER_MODEL\", \"large-v3\")  # For openai-whisper\nWHISPER_DEVICE = os.getenv(\"WHISPER_DEVICE\", \"cuda\")  # Options: \"cuda\" or \"cpu\"\n# Faster-whisper specific settings (used if WHISPER_ENGINE=faster)\nFASTER_WHISPER_MODEL = os.getenv(\n    \"FASTER_WHISPER_MODEL\", \"small\"\n)  # small, medium, large-v2, large-v3\nFASTER_WHISPER_COMPUTE_TYPE = os.getenv(",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "WHISPER_ENGINE",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "WHISPER_ENGINE = os.getenv(\"WHISPER_ENGINE\", \"openai\")  # Options: \"openai\" or \"faster\"\nWHISPER_MODEL = os.getenv(\"WHISPER_MODEL\", \"large-v3\")  # For openai-whisper\nWHISPER_DEVICE = os.getenv(\"WHISPER_DEVICE\", \"cuda\")  # Options: \"cuda\" or \"cpu\"\n# Faster-whisper specific settings (used if WHISPER_ENGINE=faster)\nFASTER_WHISPER_MODEL = os.getenv(\n    \"FASTER_WHISPER_MODEL\", \"small\"\n)  # small, medium, large-v2, large-v3\nFASTER_WHISPER_COMPUTE_TYPE = os.getenv(\n    \"FASTER_WHISPER_COMPUTE_TYPE\", \"int8\"\n)  # int8, float16, float32",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -394,7 +451,34 @@
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "WHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "peekOfCode": "WHISPER_MODEL = os.getenv(\"WHISPER_MODEL\", \"large-v3\")  # For openai-whisper\nWHISPER_DEVICE = os.getenv(\"WHISPER_DEVICE\", \"cuda\")  # Options: \"cuda\" or \"cpu\"\n# Faster-whisper specific settings (used if WHISPER_ENGINE=faster)\nFASTER_WHISPER_MODEL = os.getenv(\n    \"FASTER_WHISPER_MODEL\", \"small\"\n)  # small, medium, large-v2, large-v3\nFASTER_WHISPER_COMPUTE_TYPE = os.getenv(\n    \"FASTER_WHISPER_COMPUTE_TYPE\", \"int8\"\n)  # int8, float16, float32\n# Supported audio formats",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "WHISPER_DEVICE",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "WHISPER_DEVICE = os.getenv(\"WHISPER_DEVICE\", \"cuda\")  # Options: \"cuda\" or \"cpu\"\n# Faster-whisper specific settings (used if WHISPER_ENGINE=faster)\nFASTER_WHISPER_MODEL = os.getenv(\n    \"FASTER_WHISPER_MODEL\", \"small\"\n)  # small, medium, large-v2, large-v3\nFASTER_WHISPER_COMPUTE_TYPE = os.getenv(\n    \"FASTER_WHISPER_COMPUTE_TYPE\", \"int8\"\n)  # int8, float16, float32\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "FASTER_WHISPER_MODEL",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "FASTER_WHISPER_MODEL = os.getenv(\n    \"FASTER_WHISPER_MODEL\", \"small\"\n)  # small, medium, large-v2, large-v3\nFASTER_WHISPER_COMPUTE_TYPE = os.getenv(\n    \"FASTER_WHISPER_COMPUTE_TYPE\", \"int8\"\n)  # int8, float16, float32\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "FASTER_WHISPER_COMPUTE_TYPE",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "FASTER_WHISPER_COMPUTE_TYPE = os.getenv(\n    \"FASTER_WHISPER_COMPUTE_TYPE\", \"int8\"\n)  # int8, float16, float32\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -430,7 +514,16 @@
         "kind": 6,
         "importPath": "core.src.LyricsGenerator",
         "description": "core.src.LyricsGenerator",
-        "peekOfCode": "class LyricsGenerator:\n    def __init__(self):\n        \"\"\"Initialize Whisper model and LLM utilities.\"\"\"\n        print(f\"Loading Whisper model: {WHISPER_MODEL}\")\n        self.model = whisper.load_model(WHISPER_MODEL)\n        self.llm = LLMUtils()\n        self.sql_utils = SQLUtils()\n        print(\"Whisper model loaded successfully\")\n    def get_all_audio_files(self, root_directory):\n        \"\"\"",
+        "peekOfCode": "class LyricsGenerator:\n    def __init__(self):\n        \"\"\"Initialize Whisper model (either openai-whisper or faster-whisper) and LLM utilities.\"\"\"\n        self.engine_type = WHISPER_ENGINE.lower()\n        if self.engine_type == \"faster\":\n            logger.info(\n                f\"Loading Faster-Whisper model: {FASTER_WHISPER_MODEL} (compute_type: {FASTER_WHISPER_COMPUTE_TYPE})\"\n            )\n            from faster_whisper import WhisperModel\n            self.model = WhisperModel(",
+        "detail": "core.src.LyricsGenerator",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "core.src.LyricsGenerator",
+        "description": "core.src.LyricsGenerator",
+        "peekOfCode": "logger = get_logger(__name__)\nclass LyricsGenerator:\n    def __init__(self):\n        \"\"\"Initialize Whisper model (either openai-whisper or faster-whisper) and LLM utilities.\"\"\"\n        self.engine_type = WHISPER_ENGINE.lower()\n        if self.engine_type == \"faster\":\n            logger.info(\n                f\"Loading Faster-Whisper model: {FASTER_WHISPER_MODEL} (compute_type: {FASTER_WHISPER_COMPUTE_TYPE})\"\n            )\n            from faster_whisper import WhisperModel",
         "detail": "core.src.LyricsGenerator",
         "documentation": {}
     },
