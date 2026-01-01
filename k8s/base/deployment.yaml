@@ -26,10 +26,6 @@ spec:
             - name: app-config
               mountPath: /app/config.yml
               subPath: config.yml
-
-            - name: playlists-config
-              mountPath: /app/playlists.txt
-              subPath: playlists.txt
             
             - name: music
               mountPath: /music
@@ -38,10 +34,6 @@ spec:
         - name: app-config
           configMap:
             name: app-config
-
-        - name: playlists-config
-          configMap:
-            name: playlists-config
 
         - name: music
           hostPath:
