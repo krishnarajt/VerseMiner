@@ -29,6 +29,9 @@ spec:
             
             - name: music
               mountPath: /music
+            
+            - name: db-data
+              mountPath: /app/db_data
 
       volumes:
         - name: app-config
@@ -39,3 +42,7 @@ spec:
           hostPath:
             path: /music
             type: Directory
+        
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: verseminer-db-pvc

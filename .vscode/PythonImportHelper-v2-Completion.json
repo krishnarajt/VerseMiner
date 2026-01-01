@@ -106,6 +106,14 @@
         "documentation": {}
     },
     {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "WHISPER_MODEL",
         "importPath": "common_constants.constants",
         "description": "common_constants.constants",
@@ -131,46 +139,6 @@
     },
     {
         "label": "GEMINI_API_KEY",
-        "importPath": "common_constants.constants",
-        "description": "common_constants.constants",
-        "isExtraImport": true,
-        "detail": "common_constants.constants",
-        "documentation": {}
-    },
-    {
-        "label": "DB_HOST",
-        "importPath": "common_constants.constants",
-        "description": "common_constants.constants",
-        "isExtraImport": true,
-        "detail": "common_constants.constants",
-        "documentation": {}
-    },
-    {
-        "label": "DB_PORT",
-        "importPath": "common_constants.constants",
-        "description": "common_constants.constants",
-        "isExtraImport": true,
-        "detail": "common_constants.constants",
-        "documentation": {}
-    },
-    {
-        "label": "DB_NAME",
-        "importPath": "common_constants.constants",
-        "description": "common_constants.constants",
-        "isExtraImport": true,
-        "detail": "common_constants.constants",
-        "documentation": {}
-    },
-    {
-        "label": "DB_USER",
-        "importPath": "common_constants.constants",
-        "description": "common_constants.constants",
-        "isExtraImport": true,
-        "detail": "common_constants.constants",
-        "documentation": {}
-    },
-    {
-        "label": "DB_PASSWORD",
         "importPath": "common_constants.constants",
         "description": "common_constants.constants",
         "isExtraImport": true,
@@ -219,11 +187,99 @@
         "documentation": {}
     },
     {
+        "label": "DB_TYPE",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_HOST",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PORT",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_NAME",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_USER",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PASSWORD",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PATH",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
         "label": "Base",
         "importPath": "models",
         "description": "models",
         "isExtraImport": true,
         "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "TranscribedFile",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "IntegrityError",
+        "importPath": "sqlalchemy.exc",
+        "description": "sqlalchemy.exc",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.exc",
+        "documentation": {}
+    },
+    {
+        "label": "get_session",
+        "importPath": "sql_connector",
+        "description": "sql_connector",
+        "isExtraImport": true,
+        "detail": "sql_connector",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "importPath": "sql_connector",
+        "description": "sql_connector",
+        "isExtraImport": true,
+        "detail": "sql_connector",
         "documentation": {}
     },
     {
@@ -236,14 +292,6 @@
         "documentation": {}
     },
     {
-        "label": "init_db",
-        "importPath": "sql_connector",
-        "description": "sql_connector",
-        "isExtraImport": true,
-        "detail": "sql_connector",
-        "documentation": {}
-    },
-    {
         "label": "LyricsGenerator",
         "importPath": "lyrics_generator",
         "description": "lyrics_generator",
@@ -252,11 +300,20 @@
         "documentation": {}
     },
     {
+        "label": "DB_TYPE",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "DB_TYPE = os.getenv(\"DB_TYPE\", \"sqlite\")  # Options: \"sqlite\" or \"postgres\"\n# PostgreSQL configuration (used if DB_TYPE=postgres)\nDB_HOST = os.getenv(\"DB_HOST\", \"localhost\")\nDB_PORT = os.getenv(\"DB_PORT\", \"5432\")\nDB_NAME = os.getenv(\"DB_NAME\", \"lyrics_db\")\nDB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# SQLite configuration (used if DB_TYPE=sqlite)\nDB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
         "label": "DB_HOST",
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "DB_HOST = os.getenv(\"DB_HOST\", \"localhost\")\nDB_PORT = os.getenv(\"DB_PORT\", \"5432\")\nDB_NAME = os.getenv(\"DB_NAME\", \"lyrics_db\")\nDB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration",
+        "peekOfCode": "DB_HOST = os.getenv(\"DB_HOST\", \"localhost\")\nDB_PORT = os.getenv(\"DB_PORT\", \"5432\")\nDB_NAME = os.getenv(\"DB_NAME\", \"lyrics_db\")\nDB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# SQLite configuration (used if DB_TYPE=sqlite)\nDB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -265,7 +322,7 @@
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "DB_PORT = os.getenv(\"DB_PORT\", \"5432\")\nDB_NAME = os.getenv(\"DB_NAME\", \"lyrics_db\")\nDB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model",
+        "peekOfCode": "DB_PORT = os.getenv(\"DB_PORT\", \"5432\")\nDB_NAME = os.getenv(\"DB_NAME\", \"lyrics_db\")\nDB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# SQLite configuration (used if DB_TYPE=sqlite)\nDB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -274,7 +331,7 @@
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "DB_NAME = os.getenv(\"DB_NAME\", \"lyrics_db\")\nDB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats",
+        "peekOfCode": "DB_NAME = os.getenv(\"DB_NAME\", \"lyrics_db\")\nDB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# SQLite configuration (used if DB_TYPE=sqlite)\nDB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -283,7 +340,7 @@
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "DB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "peekOfCode": "DB_USER = os.getenv(\"DB_USER\", \"postgres\")\nDB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# SQLite configuration (used if DB_TYPE=sqlite)\nDB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -292,7 +349,25 @@
         "kind": 5,
         "importPath": "core.common_constants.constants",
         "description": "core.common_constants.constants",
-        "peekOfCode": "DB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "peekOfCode": "DB_PASSWORD = os.getenv(\"DB_PASSWORD\", \"\")\n# SQLite configuration (used if DB_TYPE=sqlite)\nDB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_ROOT_PATH",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "DB_ROOT_PATH = os.getenv(\"DB_ROOT_PATH\", \"db_data\")\nDB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
+        "detail": "core.common_constants.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PATH",
+        "kind": 5,
+        "importPath": "core.common_constants.constants",
+        "description": "core.common_constants.constants",
+        "peekOfCode": "DB_PATH = os.getenv(\"DB_PATH\", f\"{DB_ROOT_PATH}/lyrics.db\")\n# Gemini API configuration\nGEMINI_API_KEY = os.getenv(\"GEMINI_API_KEY\")\n# Root path for music files\nMUSIC_ROOT_PATH = os.getenv(\"MUSIC_ROOT_PATH\", \"/music\")\n# Whisper model configuration\nWHISPER_MODEL = \"large-v3\"  # Most accurate model\n# Supported audio formats\nAUDIO_EXTENSIONS = {\".mp3\", \".wav\", \".flac\", \".m4a\", \".ogg\", \".opus\", \".wma\", \".aac\"}",
         "detail": "core.common_constants.constants",
         "documentation": {}
     },
@@ -373,7 +448,7 @@
         "kind": 2,
         "importPath": "core.utils.sql_connector",
         "description": "core.utils.sql_connector",
-        "peekOfCode": "def get_engine():\n    \"\"\"Create and return a SQLAlchemy engine.\"\"\"\n    connection_string = (\n        f\"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}\"\n    )\n    engine = create_engine(connection_string, pool_pre_ping=True)\n    return engine\ndef get_session():\n    \"\"\"Create and return a SQLAlchemy session.\"\"\"\n    engine = get_engine()",
+        "peekOfCode": "def get_engine():\n    \"\"\"Create and return a SQLAlchemy engine based on DB_TYPE.\"\"\"\n    if DB_TYPE.lower() == \"postgres\":\n        connection_string = (\n            f\"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}\"\n        )\n        print(f\"Using PostgreSQL database: {DB_NAME}\")\n    elif DB_TYPE.lower() == \"sqlite\":\n        connection_string = f\"sqlite:///{DB_PATH}\"\n        print(f\"Using SQLite database: {DB_PATH}\")",
         "detail": "core.utils.sql_connector",
         "documentation": {}
     },
@@ -393,6 +468,15 @@
         "description": "core.utils.sql_connector",
         "peekOfCode": "def init_db():\n    \"\"\"Initialize the database by creating all tables.\"\"\"\n    engine = get_engine()\n    Base.metadata.create_all(engine)",
         "detail": "core.utils.sql_connector",
+        "documentation": {}
+    },
+    {
+        "label": "SQLUtils",
+        "kind": 6,
+        "importPath": "core.utils.sql_utils",
+        "description": "core.utils.sql_utils",
+        "peekOfCode": "class SQLUtils:\n    @staticmethod\n    def add_file(file_location, date_transcribed=None, date_added=None):\n        \"\"\"Add a new file to the database.\"\"\"\n        session = get_session()\n        try:\n            new_file = TranscribedFile(\n                file_location=file_location,\n                date_transcribed=date_transcribed or datetime.now(),\n                date_added=date_added or datetime.now(),",
+        "detail": "core.utils.sql_utils",
         "documentation": {}
     },
     {
