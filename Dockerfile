@@ -16,7 +16,8 @@ RUN pip3 install --no-cache-dir \
     faster-whisper \
     sqlalchemy \
     google-genai \
-    python-dotenv
+    python-dotenv \
+    apscheduler
 
 # Copy application code
 COPY . .

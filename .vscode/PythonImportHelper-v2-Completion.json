@@ -317,6 +317,22 @@
         "documentation": {}
     },
     {
+        "label": "RateLimitError",
+        "importPath": "core.utils.llm_utils",
+        "description": "core.utils.llm_utils",
+        "isExtraImport": true,
+        "detail": "core.utils.llm_utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "core.utils.logging_utils",
+        "description": "core.utils.logging_utils",
+        "isExtraImport": true,
+        "detail": "core.utils.logging_utils",
+        "documentation": {}
+    },
+    {
         "label": "get_logger",
         "importPath": "core.utils.logging_utils",
         "description": "core.utils.logging_utils",
@@ -412,6 +428,31 @@
         "importPath": "argparse",
         "description": "argparse",
         "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "BlockingScheduler",
+        "importPath": "apscheduler.schedulers.blocking",
+        "description": "apscheduler.schedulers.blocking",
+        "isExtraImport": true,
+        "detail": "apscheduler.schedulers.blocking",
+        "documentation": {}
+    },
+    {
+        "label": "IntervalTrigger",
+        "importPath": "apscheduler.triggers.interval",
+        "description": "apscheduler.triggers.interval",
+        "isExtraImport": true,
+        "detail": "apscheduler.triggers.interval",
         "documentation": {}
     },
     {
@@ -693,6 +734,15 @@
         "documentation": {}
     },
     {
+        "label": "RateLimitError",
+        "kind": 6,
+        "importPath": "core.utils.llm_utils",
+        "description": "core.utils.llm_utils",
+        "peekOfCode": "class RateLimitError(Exception):\n    \"\"\"Custom exception for API rate limit errors.\"\"\"\n    pass\nclass LLMUtils:\n    def __init__(self):\n        \"\"\"\n        Initialize the Gemini API client.\n        Tools are intentionally NOT used to avoid strict model-ID constraints.\n        \"\"\"\n        self.client = genai.Client(api_key=GEMINI_API_KEY)",
+        "detail": "core.utils.llm_utils",
+        "documentation": {}
+    },
+    {
         "label": "LLMUtils",
         "kind": 6,
         "importPath": "core.utils.llm_utils",
@@ -747,11 +797,38 @@
         "documentation": {}
     },
     {
+        "label": "process_directory_scheduled",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def process_directory_scheduled(directory):\n    \"\"\"\n    Process a directory and handle rate limit errors gracefully.\n    Args:\n        directory: Path to the directory to process\n    \"\"\"\n    try:\n        logger.info(\"=\" * 60)\n        logger.info(\"Starting scheduled LRC generation run\")\n        logger.info(\"=\" * 60)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
         "label": "main",
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def main():\n    \"\"\"Main entry point for the LRC generator.\"\"\"\n    parser = argparse.ArgumentParser(\n        description=\"Generate LRC files for audio files using Whisper\"\n    )\n    parser.add_argument(\n        \"directory\",\n        nargs=\"?\",\n        default=MUSIC_ROOT_PATH,\n        help=f\"Root directory containing audio files (default: {MUSIC_ROOT_PATH})\",",
+        "peekOfCode": "def main():\n    \"\"\"Main entry point for the LRC generator with 24-hour scheduling.\"\"\"\n    parser = argparse.ArgumentParser(\n        description=\"Generate LRC files for audio files using Whisper (runs every 24 hours)\"\n    )\n    parser.add_argument(\n        \"directory\",\n        nargs=\"?\",\n        default=MUSIC_ROOT_PATH,\n        help=f\"Root directory containing audio files (default: {MUSIC_ROOT_PATH})\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "main_legacy",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main_legacy():\n    \"\"\"Legacy entry point for single run (deprecated - use --once flag instead).\"\"\"\n    parser = argparse.ArgumentParser(\n        description=\"Generate LRC files for audio files using Whisper\"\n    )\n    parser.add_argument(\n        \"directory\",\n        nargs=\"?\",\n        default=MUSIC_ROOT_PATH,\n        help=f\"Root directory containing audio files (default: {MUSIC_ROOT_PATH})\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "logger = get_logger(__name__)\ndef process_directory_scheduled(directory):\n    \"\"\"\n    Process a directory and handle rate limit errors gracefully.\n    Args:\n        directory: Path to the directory to process\n    \"\"\"\n    try:\n        logger.info(\"=\" * 60)\n        logger.info(\"Starting scheduled LRC generation run\")",
         "detail": "main",
         "documentation": {}
     },

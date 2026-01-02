@@ -40,7 +40,7 @@ spec:
 
         - name: music
           hostPath:
-            path: /music/album
+            path: /music/albums
             type: Directory
         
         - name: db-data

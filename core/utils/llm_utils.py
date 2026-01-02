@@ -2,6 +2,12 @@ from google import genai
 from core.common_constants.constants import GEMINI_API_KEY, GEMINI_MODEL_ID
 
 
+class RateLimitError(Exception):
+    """Custom exception for API rate limit errors."""
+
+    pass
+
+
 class LLMUtils:
     def __init__(self):
         """
@@ -21,6 +27,9 @@ class LLMUtils:
 
         Returns:
             String with transliteration and translation (2 lines minimum)
+
+        Raises:
+            RateLimitError: If API rate limit is exceeded
         """
         prompt = f"""Song: "{file_name}"
 Lyric: {lyric_text}
@@ -69,6 +78,12 @@ you are with me"""
             return "\n".join(lines)
 
         except Exception as e:
+            # Check if this is a rate limit error
+            error_str = str(e).lower()
+            if "rate" in error_str or "quota" in error_str or "429" in error_str:
+                print(f"RATE LIMIT HIT: {e}")
+                raise RateLimitError(f"API rate limit exceeded: {e}") from e
+
             print(f"Error calling Gemini API for line '{lyric_text}': {e}")
             return ""
 
