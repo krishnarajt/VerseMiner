@@ -115,14 +115,14 @@ class LyricsGenerator:
             # Faster-whisper requires WAV conversion
             wav_path = self._to_wav(Path(audio_file_path))
             try:
+                # Single transcription pass with auto-detection
                 segments, info = self.model.transcribe(
                     str(wav_path),
                     task="transcribe",
                     language=None,  # auto-detect
-                    no_speech_threshold=0.3,
                 )
 
-                # Override Urdu with Hindi if needed
+                # Only override Urdu with Hindi
                 if info.language == "ur":
                     logger.debug("Detected Urdu language, overriding with Hindi")
                     segments, info = self.model.transcribe(
@@ -132,22 +132,20 @@ class LyricsGenerator:
                     )
 
                 # Convert faster-whisper segments to openai-whisper format
+                # Note: segments is a generator, so we consume it once
                 result = {
-                    "text": " ".join([seg.text for seg in segments]),
+                    "text": "",
                     "segments": [],
                 }
 
-                # Re-run to get segments list (faster-whisper returns generator)
-                segments, _ = self.model.transcribe(
-                    str(wav_path),
-                    task="transcribe",
-                    language=info.language if info.language != "ur" else "hi",
-                )
-
+                text_parts = []
                 for seg in segments:
                     result["segments"].append(
                         {"start": seg.start, "end": seg.end, "text": seg.text}
                     )
+                    text_parts.append(seg.text)
+
+                result["text"] = " ".join(text_parts)
 
                 return result
             finally:
@@ -161,7 +159,6 @@ class LyricsGenerator:
                 task="transcribe",
                 word_timestamps=True,
                 verbose=False,
-                no_speech_threshold=0.3,
             )
             return result
 
@@ -215,8 +212,10 @@ class LyricsGenerator:
             # Process with LLM for transliteration and translation
             logger.debug(f"Processing line {idx}/{total_segments}: {text}")
             enhancement = self.llm.detect_and_enhance_lyric_line(text, audio_file_name)
-            logger.info(f"Enhanced line {idx}/{total_segments}, original: '{text}', enhancement: '{enhancement}'")
-            
+            logger.info(
+                f"Enhanced line {idx}/{total_segments}, original: '{text}', enhancement: '{enhancement}'"
+            )
+
             # If we got enhancement (non-English), add it with same timestamp
             if enhancement:
                 for enhanced_line in enhancement.split("\n"):
@@ -255,19 +254,14 @@ class LyricsGenerator:
             try:
                 relative_path = self.get_relative_path(audio_file)
 
-                # Check if already processed
-                # if self.sql_utils.file_exists(relative_path):
-                #     logger.info(
-                #         f"[{idx}/{total_files}] Skipping (already processed): {audio_file.name}"
-                #     )
-                #     continue
-                # if lrc file exists, skip
+                # Check if LRC file exists, skip if it does
                 lrc_file_path = audio_file.with_suffix(".lrc")
                 if lrc_file_path.exists():
                     logger.info(
                         f"[{idx}/{total_files}] Skipping (LRC exists): {audio_file.name}"
                     )
                     continue
+
                 logger.info(f"\n[{idx}/{total_files}] Processing: {audio_file.name}")
 
                 # Transcribe audio
