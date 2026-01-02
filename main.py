@@ -1,8 +1,9 @@
 import argparse
 from pathlib import Path
-from sql_connector import init_db
-from lyrics_generator import LyricsGenerator
-from common_constants.constants import MUSIC_ROOT_PATH
+
+from core.common_constants.constants import MUSIC_ROOT_PATH
+from core.src.LyricsGenerator import LyricsGenerator
+from core.utils.sql_connector import init_db
 
 
 def main():

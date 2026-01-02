@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy.exc import IntegrityError
-from models import TranscribedFile
-from sql_connector import get_session
+from core.common_constants.models import TranscribedFile
+from core.utils.sql_connector import get_session
 
 
 class SQLUtils:

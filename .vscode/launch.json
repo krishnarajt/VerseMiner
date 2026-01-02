@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run (uv via task)",
+            "type": "node",
+            "request": "launch",
+            "program": "echo",
+            "args": [
+                "Starting uv task…"
+            ],
+            "preLaunchTask": "Run main.py (uv)",
+            "console": "integratedTerminal"
+        }
+    ]
+}

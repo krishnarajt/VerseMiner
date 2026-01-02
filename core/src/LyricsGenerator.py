@@ -3,7 +3,7 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 from typing import Optional
-from constants import (
+from core.common_constants.constants import (
     WHISPER_ENGINE,
     WHISPER_MODEL,
     WHISPER_DEVICE,
@@ -12,9 +12,9 @@ from constants import (
     AUDIO_EXTENSIONS,
     MUSIC_ROOT_PATH,
 )
-from sql_utils import SQLUtils
-from llm_utils import LLMUtils
-from src.logging_utils import get_logger
+from core.utils.llm_utils import LLMUtils
+from core.utils.logging_utils import get_logger
+from core.utils.sql_utils import SQLUtils
 
 logger = get_logger(__name__)
 
@@ -35,6 +35,7 @@ class LyricsGenerator:
                 device="cpu" if WHISPER_DEVICE.lower() == "cpu" else "cuda",
                 compute_type=FASTER_WHISPER_COMPUTE_TYPE,
             )
+            # self.model = self.model.half()
             logger.info("Faster-Whisper model loaded successfully")
         elif self.engine_type == "openai":
             logger.info(f"Loading OpenAI Whisper model: {WHISPER_MODEL}")
@@ -119,6 +120,7 @@ class LyricsGenerator:
                     str(wav_path),
                     task="transcribe",
                     language=None,  # auto-detect
+                    no_speech_threshold=0.3,
                 )
 
                 # Override Urdu with Hindi if needed
@@ -160,6 +162,7 @@ class LyricsGenerator:
                 task="transcribe",
                 word_timestamps=True,
                 verbose=False,
+                no_speech_threshold=0.3,
             )
             return result
 

@@ -1,7 +1,16 @@
+from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from constants import DB_TYPE, DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, DB_PATH
-from models import Base
+from core.common_constants.constants import (
+    DB_TYPE,
+    DB_HOST,
+    DB_PORT,
+    DB_NAME,
+    DB_USER,
+    DB_PASSWORD,
+    DB_PATH,
+)
+from core.common_constants.models import Base
 
 
 def get_engine():
@@ -11,14 +20,20 @@ def get_engine():
             f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
         )
         print(f"Using PostgreSQL database: {DB_NAME}")
+
     elif DB_TYPE.lower() == "sqlite":
-        connection_string = f"sqlite:///{DB_PATH}"
-        print(f"Using SQLite database: {DB_PATH}")
+        db_path = Path(DB_PATH)
+
+        # ✅ THIS is the missing line
+        db_path.parent.mkdir(parents=True, exist_ok=True)
+
+        connection_string = f"sqlite:///{db_path}"
+        print(f"Using SQLite database: {db_path}")
+
     else:
         raise ValueError(f"Unsupported DB_TYPE: {DB_TYPE}. Use 'sqlite' or 'postgres'")
 
-    engine = create_engine(connection_string, pool_pre_ping=True)
-    return engine
+    return create_engine(connection_string, pool_pre_ping=True)
 
 
 def get_session():

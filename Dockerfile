@@ -28,8 +28,5 @@ ENV FASTER_WHISPER_MODEL=small
 ENV FASTER_WHISPER_COMPUTE_TYPE=int8
 ENV WHISPER_DEVICE=cpu
 
-# Create mount point for music files
-VOLUME ["/music"]
-
 # Run the application
 CMD ["python3", "main.py"]
