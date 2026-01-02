@@ -94,10 +94,10 @@ def main():
 
     # Otherwise, schedule to run every 24 hours
     logger.info("Starting scheduler - will run immediately and every 24 hours")
-    
+
     # Run immediately first
     process_directory_scheduled(directory)
-    
+
     scheduler = BlockingScheduler()
 
     # Schedule the job to run every 24 hours after the initial run
