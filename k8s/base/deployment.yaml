@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/krishnarajt/verseminer:git-111b5b82c8d23306396d092273345870d365e0eb
+          image: ghcr.io/krishnarajt/verseminer:git-4dfcbc8a5e6c8ac04357ed59a65d40235d1c1fdb
           imagePullPolicy: IfNotPresent
           command: ["python", "main.py"]
 
