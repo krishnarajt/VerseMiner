@@ -15,7 +15,7 @@ COPY requirements.txt .
 RUN pip3 install --no-cache-dir \
     faster-whisper \
     sqlalchemy \
-    google-generativeai \
+    google-genai \
     python-dotenv
 
 # Copy application code
