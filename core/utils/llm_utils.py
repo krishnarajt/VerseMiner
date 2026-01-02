@@ -9,70 +9,115 @@ class LLMUtils:
         Tools are intentionally NOT used to avoid strict model-ID constraints.
         """
         self.client = genai.Client(api_key=GEMINI_API_KEY)
-
-        # Alias is OK when tools are not used
         self.model_id = GEMINI_MODEL_ID
 
-    def improve_lyrics(self, raw_transcription, file_name):
+    def detect_and_enhance_lyric_line(self, lyric_text, file_name):
         """
-        Clean and improve Whisper-generated timestamped lyrics
-        while preserving timestamps and structure.
+        Process a single lyric line to get transliteration and translation.
 
-        NOTE:
-        - No external search
-        - No lyric fetching
-        - Improvements are based purely on linguistic cleanup
+        Args:
+            lyric_text: Single line of lyrics without timestamp
+            file_name: Name of the audio file for context
+
+        Returns:
+            String with transliteration and translation (2 lines minimum)
         """
+        prompt = f"""Song: "{file_name}"
+Lyric: {lyric_text}
 
-        prompt = f"""You are an expert music linguist and LRC (timed lyrics) formatter.
+Output exactly 2 lines with NO numbering or labels:
+Line 1: Romanized/transliterated version
+Line 2: English translation
 
-Given the raw timestamped transcription below from an audio file named "{file_name}", please:
-
-1. **Preserve Timestamps**:
-   - Every lyric line starts with a timestamp like [mm:ss.xx]
-   - DO NOT change, remove, or reorder timestamps.
-
-2. **Clean Lyrics**:
-   - Fix obvious transcription errors.
-   - Normalize spelling and casing.
-   - Remove non-lyrical noise like [Music], [Applause], [Instrumental].
-
-3. **Structure**:
-   - Keep Verse / Chorus / Bridge headers if present.
-   - Do not invent new sections.
-
-4. **Language Handling**:
-   - Automatically detect the language of each lyric line.
-   - If the lyric is in English, output only the cleaned lyric line.
-   - If the lyric is NOT in English:
-     - Output the original lyric in its native script.
-     - Add a **transliteration into Latin (Roman) script** on the next line.
-     - Add an **English translation** on the following line.
-     - All three lines MUST repeat the exact same timestamp.
-
-Output format examples:
-
-English lyric:
-[00:12.34] Original English lyric line
-
-Non-English lyric:
-[00:12.34] Original lyric line (native script)
-[00:12.34] Transliteration (Latin script)
-[00:12.34] English translation
-
-Raw transcription:
-{raw_transcription}
-
-Return ONLY the formatted lyrics. No explanations, no filler text.
-"""
+Example:
+तुम मेरे साथ हो
+Output:
+tum mere saath ho
+you are with me"""
         try:
             response = self.client.models.generate_content(
                 model=self.model_id,
                 contents=prompt,
             )
-            print(response.text)
-            return response.text
+
+            result = response.text.strip()
+
+            # Remove any numbering that might have been added (1. 2. etc)
+            lines = []
+            for line in result.split("\n"):
+                line = line.strip()
+                # Remove leading numbers and dots
+                if line and (
+                    line[0].isdigit() or line.startswith("1.") or line.startswith("2.")
+                ):
+                    # Strip numbering like "1. " or "2. "
+                    line = line.lstrip("0123456789. ")
+                if line:
+                    lines.append(line)
+
+            # Accept any number of lines (should be at least 2)
+            if len(lines) < 2:
+                print(
+                    f"Warning: Expected at least 2 lines but got {len(lines)} for: {lyric_text}"
+                )
+                # Return whatever we got
+                return "\n".join(lines) if lines else ""
+
+            if len(lines) > 2:
+                print(f"Info: Got {len(lines)} lines (expected 2) for: {lyric_text}")
+
+            return "\n".join(lines)
 
         except Exception as e:
-            print(f"Error calling Gemini API: {e}")
-            return raw_transcription
+            print(f"Error calling Gemini API for line '{lyric_text}': {e}")
+            return ""
+
+    def improve_lyrics(self, raw_transcription, file_name):
+        """
+        Process each lyric line individually to add transliteration and translation.
+
+        Args:
+            raw_transcription: Full transcription text with timestamps
+            file_name: Name of the audio file
+
+        Returns:
+            Enhanced lyrics with transliteration and translation for non-English lines
+        """
+        lines = raw_transcription.strip().split("\n")
+        enhanced_lyrics = []
+
+        for line in lines:
+            line = line.strip()
+
+            # Skip empty lines
+            if not line:
+                enhanced_lyrics.append(line)
+                continue
+
+            # Check if line has timestamp format [mm:ss.xx]
+            if line.startswith("[") and "]" in line:
+                # Extract timestamp and lyric text
+                timestamp_end = line.index("]")
+                timestamp = line[: timestamp_end + 1]
+                lyric_text = line[timestamp_end + 1 :].strip()
+
+                # Add original line
+                enhanced_lyrics.append(line)
+
+                # Skip if it's a metadata line or empty lyric
+                if not lyric_text or lyric_text.startswith("["):
+                    continue
+
+                # Process the lyric line
+                print(f"Processing: {lyric_text}")
+                enhancement = self.detect_and_enhance_lyric_line(lyric_text, file_name)
+
+                # If we got enhancement (non-English), add it with same timestamp
+                if enhancement:
+                    for enhanced_line in enhancement.split("\n"):
+                        enhanced_lyrics.append(f"{timestamp} {enhanced_line.strip()}")
+            else:
+                # Non-timestamped line (metadata, etc.)
+                enhanced_lyrics.append(line)
+
+        return "\n".join(enhanced_lyrics)

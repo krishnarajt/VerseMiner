@@ -697,7 +697,7 @@
         "kind": 6,
         "importPath": "core.utils.llm_utils",
         "description": "core.utils.llm_utils",
-        "peekOfCode": "class LLMUtils:\n    def __init__(self):\n        \"\"\"\n        Initialize the Gemini API client.\n        Tools are intentionally NOT used to avoid strict model-ID constraints.\n        \"\"\"\n        self.client = genai.Client(api_key=GEMINI_API_KEY)\n        # Alias is OK when tools are not used\n        self.model_id = GEMINI_MODEL_ID\n    def improve_lyrics(self, raw_transcription, file_name):",
+        "peekOfCode": "class LLMUtils:\n    def __init__(self):\n        \"\"\"\n        Initialize the Gemini API client.\n        Tools are intentionally NOT used to avoid strict model-ID constraints.\n        \"\"\"\n        self.client = genai.Client(api_key=GEMINI_API_KEY)\n        self.model_id = GEMINI_MODEL_ID\n    def detect_and_enhance_lyric_line(self, lyric_text, file_name):\n        \"\"\"",
         "detail": "core.utils.llm_utils",
         "documentation": {}
     },

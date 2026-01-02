@@ -35,7 +35,6 @@ class LyricsGenerator:
                 device="cpu" if WHISPER_DEVICE.lower() == "cpu" else "cuda",
                 compute_type=FASTER_WHISPER_COMPUTE_TYPE,
             )
-            # self.model = self.model.half()
             logger.info("Faster-Whisper model loaded successfully")
         elif self.engine_type == "openai":
             logger.info(f"Loading OpenAI Whisper model: {WHISPER_MODEL}")
@@ -180,15 +179,16 @@ class LyricsGenerator:
         secs = seconds % 60
         return f"[{minutes:02d}:{secs:05.2f}]"
 
-    def create_lrc_content(self, transcription_result):
+    def create_lrc_content(self, transcription_result, audio_file_name):
         """
-        Create LRC file content from Whisper transcription.
+        Create LRC file content from Whisper transcription with per-line enhancement.
 
         Args:
             transcription_result: Result from Whisper transcription
+            audio_file_name: Name of the audio file for LLM context
 
         Returns:
-            LRC formatted string
+            LRC formatted string with transliteration and translation
         """
         lrc_lines = []
 
@@ -199,11 +199,30 @@ class LyricsGenerator:
         lrc_lines.append(f"[by:Whisper AI - {datetime.now().strftime('%Y-%m-%d')}]")
         lrc_lines.append("")
 
-        # Add timestamped lyrics
-        for segment in transcription_result["segments"]:
+        # Process each segment with LLM
+        total_segments = len(transcription_result["segments"])
+        for idx, segment in enumerate(transcription_result["segments"], 1):
             timestamp = self.format_lrc_timestamp(segment["start"])
             text = segment["text"].strip()
+
+            # Add original lyric line
             lrc_lines.append(f"{timestamp}{text}")
+
+            # Skip empty lines
+            if not text:
+                continue
+
+            # Process with LLM for transliteration and translation
+            logger.debug(f"Processing line {idx}/{total_segments}: {text}")
+            enhancement = self.llm.detect_and_enhance_lyric_line(text, audio_file_name)
+            logger.info(f"Enhanced line {idx}/{total_segments}, original: '{text}', enhancement: '{enhancement}'")
+            
+            # If we got enhancement (non-English), add it with same timestamp
+            if enhancement:
+                for enhanced_line in enhancement.split("\n"):
+                    enhanced_line = enhanced_line.strip()
+                    if enhanced_line:
+                        lrc_lines.append(f"{timestamp}{enhanced_line}")
 
         return "\n".join(lrc_lines)
 
@@ -237,34 +256,29 @@ class LyricsGenerator:
                 relative_path = self.get_relative_path(audio_file)
 
                 # Check if already processed
-                if self.sql_utils.file_exists(relative_path):
+                # if self.sql_utils.file_exists(relative_path):
+                #     logger.info(
+                #         f"[{idx}/{total_files}] Skipping (already processed): {audio_file.name}"
+                #     )
+                #     continue
+                # if lrc file exists, skip
+                lrc_file_path = audio_file.with_suffix(".lrc")
+                if lrc_file_path.exists():
                     logger.info(
-                        f"[{idx}/{total_files}] Skipping (already processed): {audio_file.name}"
+                        f"[{idx}/{total_files}] Skipping (LRC exists): {audio_file.name}"
                     )
                     continue
-
                 logger.info(f"\n[{idx}/{total_files}] Processing: {audio_file.name}")
 
                 # Transcribe audio
                 result = self.transcribe_audio(audio_file)
 
-                # Extract raw text
-                raw_text = result["text"]
-
-                # Improve lyrics with LLM
-                logger.info("Improving lyrics with Gemini...")
-                improved_text = self.llm.improve_lyrics(raw_text, audio_file.name)
-
-                # Create LRC content
-                lrc_content = self.create_lrc_content(result)
-
-                # Add improved lyrics as comment
-                lrc_with_improved = (
-                    f"{lrc_content}\n\n[Improved Lyrics]\n{improved_text}"
-                )
+                # Create LRC content with per-line LLM enhancement
+                logger.info("Enhancing lyrics with Gemini (per-line processing)...")
+                lrc_content = self.create_lrc_content(result, audio_file.name)
 
                 # Save LRC file
-                self.save_lrc_file(audio_file, lrc_with_improved)
+                self.save_lrc_file(audio_file, lrc_content)
 
                 # Record in database
                 self.sql_utils.add_file(
