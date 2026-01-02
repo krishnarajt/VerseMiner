@@ -93,10 +93,14 @@ def main():
         return
 
     # Otherwise, schedule to run every 24 hours
-    logger.info("Starting scheduler - will run every 24 hours")
+    logger.info("Starting scheduler - will run immediately and every 24 hours")
+    
+    # Run immediately first
+    process_directory_scheduled(directory)
+    
     scheduler = BlockingScheduler()
 
-    # Schedule the job to run every 24 hours
+    # Schedule the job to run every 24 hours after the initial run
     scheduler.add_job(
         process_directory_scheduled,
         IntervalTrigger(hours=24),
@@ -107,7 +111,7 @@ def main():
     )
 
     print("=" * 60)
-    print("Scheduler started - running every 24 hours")
+    print("Scheduler started - running again in 24 hours")
     print("Press Ctrl+C to stop")
     print("=" * 60)
 
